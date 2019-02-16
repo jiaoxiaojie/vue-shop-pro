@@ -31,8 +31,8 @@ export default {
     return {
       // 登录form表单需要的数据
       loginForm: {
-        username: '',
-        password: ''
+        username: 'admin',
+        password: '123456'
       },
       // 给表单定义校验规则
       loginFormRules: {
@@ -56,11 +56,11 @@ export default {
           const { data: res } = await this.$http.post('/login', this.loginForm)
           // console.log(res)
           // 判断用户名或者密码校验失败
-          if(res.meta.status!==200){
+          if (res.meta.status !== 200) {
             return this.$message.error('用户名或者密码不存在')
           }
           // 通过游览器的sessionstorage记录游览器返回的token信息
-          window.sessionStorage.setItem('token',res.data.token)
+          window.sessionStorage.setItem('token', res.data.token)
           // 路由重定向到首页
           this.$router.push('/home')
         }
